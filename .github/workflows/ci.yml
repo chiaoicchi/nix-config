@@ -20,7 +20,7 @@ jobs:
       - name: Setup secrets
         run: |
           cp secrets.nix.example secrets.nix
-          git add secrets.nix
+          git add -f secrets.nix
       
       - name: Check flake
         run: nix flake check
