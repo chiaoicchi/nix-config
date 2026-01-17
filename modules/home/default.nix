@@ -1,8 +1,7 @@
-{
-  pkgs,
-  gitUsername,
-  gitEmail,
-  ...
+{ pkgs
+, gitUsername
+, gitEmail
+, ...
 }:
 {
   imports = [

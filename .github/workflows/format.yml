@@ -1,0 +1,24 @@
+name: Format
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Check Nix formatting
+        run: nix run nixpkgs#nixpkgs-fmt -- --check .
+
+      - name: Check Lua formatting
+        run: nix run nixpkgs#stylua -- --check .
