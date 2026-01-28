@@ -9,6 +9,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap("n", "gr", vim.lsp.buf.references)
     keymap("n", "K", vim.lsp.buf.hover)
 
+    keymap("n", "gl", vim.diagnostic.open_float)
     keymap("n", "[d", function()
       vim.diagnostic.jump({ count = -1 })
     end)
@@ -22,7 +23,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
     end)
 
-    if client and client.supports_method("textDocument/formatting") then
+    if client and client:supports_method("textDocument/formatting") then
       vim.api.nvim_create_autocmd("BufWritePre", {
         buffer = bufnr,
         callback = function()
