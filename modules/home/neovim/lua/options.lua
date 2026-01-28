@@ -31,6 +31,17 @@ opt.updatetime = 250
 opt.timeoutlen = 300
 
 opt.exrc = true
+local function load_git_root_exrc()
+  local git_root = vim.fn.systemlist("git rev-parse --show-toplevel 2>/dev/null")[1]
+  if vim.v.shell_error == 0 and git_root then
+    local exrc_path = git_root .. "/.nvim.lua"
+    if vim.fn.filereadable(exrc_path) == 1 then
+      vim.cmd("source " .. vim.fn.fnameescape(exrc_path))
+    end
+  end
+end
+
+load_git_root_exrc()
 
 vim.cmd("colorscheme default")
 
