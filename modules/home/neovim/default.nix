@@ -28,7 +28,6 @@
       }
     ];
 
-    extraLuaConfig = builtins.readFile ./lua/init.lua;
     extraPackages = with pkgs; [
       lua-language-server
       nil
@@ -40,6 +39,7 @@
   };
 
   xdg.configFile = {
+    "nvim/init.lua".source = ./lua/init.lua;
     "nvim/lua/options.lua".source = ./lua/options.lua;
     "nvim/lua/keymaps.lua".source = ./lua/keymaps.lua;
     "nvim/lua/telescope_config.lua".source = ./lua/telescope_config.lua;
