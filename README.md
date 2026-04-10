@@ -5,17 +5,16 @@ Home Manager configuration for macOS (Apple Silicon).
 ## Features
 
 - Reproducible dev environment with Nix flakes
-- Minimal Neovim setup (LSP + Treesitter)
-- Project-local config via `.nvim.lua` with format on save
-- No mouse (keyboard-driven workflow)
+- Neovim 0.11+ with native LSP, Treesitter, format on save
+- Project-local LSPs via devShell/direnv
+- Keyboard-driven workflow
 
 ## Stack
 
 - **Shell**: Zsh + Starship + direnv
-- **Editor**: Neovim (LSP, Treesitter, Telescope)
+- **Editor**: Neovim (LSP, Treesitter, Telescope, blink.cmp)
 - **Terminal**: Alacritty + Tmux
 - **Git**: delta, rebase workflow
-- **Packages**: curl, claude-code, Hack Nerd Font
 
 ## Setup
 
@@ -29,5 +28,4 @@ nix run home-manager -- switch --flake .#chiaoi@mac
 
 1. Fork this repository
 2. Update `flake.nix`: change `username`, `gitUsername`, `gitEmail`
-3. Update `hosts/mac.nix`: change `home.username` and `home.homeDirectory`
-4. Apply: `home-manager switch --flake .#<username>@mac`
+3. Apply: `home-manager switch --flake .#<username>@mac`

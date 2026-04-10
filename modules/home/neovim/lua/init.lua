@@ -1,4 +1,5 @@
 require("options")
-require("keymaps")
-require("telescope_config")
+require("gui")
+require("editor")
+require("finder")
 require("lsp")

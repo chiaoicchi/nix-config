@@ -1,61 +1,37 @@
-local opt = vim.opt
+vim.g.mapleader = " "
 
-opt.number = true
-opt.relativenumber = true
+vim.opt.number = true
+vim.opt.relativenumber = true
 
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.expandtab = true
-opt.smartindent = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.smartindent = true
 
-opt.ignorecase = true
-opt.smartcase = true
-opt.hlsearch = true
-opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
 
-opt.termguicolors = true
-opt.signcolumn = "yes"
-opt.cursorline = true
-opt.wrap = true
-opt.scrolloff = 8
-opt.sidescrolloff = 8
+vim.opt.termguicolors = true
+vim.opt.signcolumn = "yes"
+vim.opt.cursorline = true
+vim.opt.wrap = true
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
 
-opt.swapfile = false
-opt.backup = false
-opt.undofile = true
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undofile = true
 
-opt.clipboard = "unnamedplus"
-opt.mouse = ""
-opt.splitbelow = true
-opt.splitright = true
-opt.updatetime = 250
-opt.timeoutlen = 300
+vim.opt.clipboard = "unnamedplus"
+vim.opt.mouse = ""
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
 
-opt.exrc = true
-local function load_git_root_exrc()
-  local git_root = vim.fn.systemlist("git rev-parse --show-toplevel 2>/dev/null")[1]
-  if vim.v.shell_error == 0 and git_root then
-    local exrc_path = git_root .. "/.nvim.lua"
-    if vim.fn.filereadable(exrc_path) == 1 then
-      vim.cmd("source " .. vim.fn.fnameescape(exrc_path))
-    end
-  end
-end
-
-load_git_root_exrc()
-
-vim.cmd("colorscheme default")
-
-vim.diagnostic.config({
-  virtual_text = true,
-  signs = true,
-  underline = true,
-  update_in_insert = false,
-  severity_sort = true,
-})
-
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
+vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { silent = true })
+vim.keymap.set("n", "<S-l>", ":bnext<CR>", { silent = true })
+vim.keymap.set("n", "<leader>c", ":bdelete<CR>", { silent = true })
+vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true })

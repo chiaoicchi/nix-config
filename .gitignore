@@ -1,2 +1,4 @@
-# Nix Secrets
-secrets.nix
+# Nix
+result
+result-*
+.direnv/
