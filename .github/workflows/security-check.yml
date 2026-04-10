@@ -1,0 +1,36 @@
+name: Security Check
+
+on:
+  schedule:
+    - cron: "0 1 * * 1" # Every Monday at 1:00 UTC
+  workflow_dispatch:
+
+jobs:
+  security:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Build and check for vulnerabilities
+        id: vulnix
+        run: |
+          nix build .#homeConfigurations.chiaoi@mac.activationPackage -o result
+          nix run nixpkgs#vulnix -- ./result > vulnix-report.txt 2>&1 || true
+          if [ -s vulnix-report.txt ] && grep -q "CVE-" vulnix-report.txt; then
+            echo "found=true" >> $GITHUB_OUTPUT
+          else
+            echo "found=false" >> $GITHUB_OUTPUT
+            echo "No known vulnerabilities found." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Create security issue
+        if: steps.vulnix.outputs.found == 'true'
+        run: |
+          gh issue create \
+            --title "Security: Vulnerabilities detected ($(date +%Y-%m-%d))" \
+            --body-file vulnix-report.txt
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
