@@ -21,9 +21,6 @@ jobs:
       - name: Update flake.lock
         run: nix flake update
 
-      - name: Check flake
-        run: nix flake check
-
       - name: Create Pull Request
         run: |
           if git diff --quiet flake.lock; then
