@@ -14,11 +14,9 @@
     { nixpkgs, home-manager, ... }:
 
     let
-      secrets = import ./secrets.nix;
-
-      commonSpecialArgs = {
-        inherit (secrets) username gitUsername gitEmail;
-      };
+      username = "chiaoi";
+      gitUsername = "chiaoicchi";
+      gitEmail = "182973681+chiaoicchi@users.noreply.github.com";
 
       mkHome =
         { system, hostModule }:
@@ -27,7 +25,7 @@
             inherit system;
             config.allowUnfree = true;
           };
-          extraSpecialArgs = commonSpecialArgs;
+          extraSpecialArgs = { inherit username gitUsername gitEmail; };
           modules = [
             ./modules/home/default.nix
             hostModule
@@ -38,7 +36,7 @@
     {
       homeConfigurations = {
         # macOS (Apple Silicon)
-        "${secrets.username}@mac" = mkHome {
+        "${username}@mac" = mkHome {
           system = "aarch64-darwin";
           hostModule = ./hosts/mac.nix;
         };
