@@ -1,8 +1,4 @@
-{ pkgs
-, gitUsername
-, gitEmail
-, ...
-}:
+{ pkgs, ... }:
 {
   imports = [
     ./git.nix
@@ -18,8 +14,4 @@
     claude-code
     nerd-fonts.hack
   ];
-
-  _module.args = {
-    inherit gitUsername gitEmail;
-  };
 }
