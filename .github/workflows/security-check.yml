@@ -5,6 +5,10 @@ on:
     - cron: "0 1 * * 1" # Every Monday at 1:00 UTC
   workflow_dispatch:
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   security:
     runs-on: macos-latest
