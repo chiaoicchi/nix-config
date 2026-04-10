@@ -1,21 +1,33 @@
 # nix-config
 
-## Environment
+Home Manager configuration for macOS (Apple Silicon).
 
-- Nix flake for reproducible development Environment
+## Features
+
+- Reproducible dev environment with Nix flakes
+- Minimal Neovim setup (LSP + Treesitter)
+- Project-local config via `.nvim.lua` with format on save
+- No mouse (keyboard-driven workflow)
+
+## Stack
+
+- **Shell**: Zsh + Starship + direnv
+- **Editor**: Neovim (LSP, Treesitter, Telescope)
+- **Terminal**: Alacritty + Tmux
+- **Git**: delta, rebase workflow
+- **Packages**: curl, claude-code, Hack Nerd Font
 
 ## Setup
 
-### Prerequisites
-
-- [Nix](https://nixos.org/) with flakes enabled
-
-### Getting Started
-
-1. Apply the configuration on macOS (Apple Silicon):
+Requires [Nix](https://nixos.org/) with flakes enabled.
 
 ```bash
-nix run home-manager -- switch --flake .#username@mac
+nix run home-manager -- switch --flake .#chiaoi@mac
 ```
 
-Replace `username` with your actual username.
+## Customization
+
+1. Fork this repository
+2. Update `flake.nix`: change `username`, `gitUsername`, `gitEmail`
+3. Update `hosts/mac.nix`: change `home.username` and `home.homeDirectory`
+4. Apply: `home-manager switch --flake .#<username>@mac`

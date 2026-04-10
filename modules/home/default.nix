@@ -8,9 +8,9 @@
     ./git.nix
     ./neovim
     ./shell.nix
-    ./tmux.nix
+    ./multiplexer.nix
     ./ssh.nix
-    ./direnv.nix
+    ./terminal.nix
   ];
 
   home.packages = with pkgs; [

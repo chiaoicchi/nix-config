@@ -25,6 +25,7 @@ opt.backup = false
 opt.undofile = true
 
 opt.clipboard = "unnamedplus"
+opt.mouse = ""
 opt.splitbelow = true
 opt.splitright = true
 opt.updatetime = 250

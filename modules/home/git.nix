@@ -9,13 +9,6 @@
         email = gitEmail;
       };
 
-      alias = {
-        co = "checkout";
-        br = "branch";
-        st = "status";
-        lg = "log --oneline --graph";
-      };
-
       core = {
         editor = "nvim";
         quotepath = false;
