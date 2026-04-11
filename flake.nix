@@ -34,6 +34,8 @@
 
     in
     {
+      formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixpkgs-fmt;
+
       homeConfigurations = {
         # macOS (Apple Silicon)
         "${username}@mac" = mkHome {
