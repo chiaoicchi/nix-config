@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./claude-code
     ./git.nix
     ./neovim
     ./shell.nix
@@ -11,7 +12,7 @@
 
   home.packages = with pkgs; [
     curl
-    claude-code
+    jq
     nerd-fonts.hack
   ];
 }
