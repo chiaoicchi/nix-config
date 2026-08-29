@@ -16,5 +16,6 @@
     brightnessctl
     foot
     fuzzel
+    wl-clipboard
   ];
 }
