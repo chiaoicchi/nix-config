@@ -2,10 +2,12 @@
 {
   imports = [
     ./apps.nix
+    ./cli.nix
     ./fcitx5
     ./git.nix
-    ./wm
+    ./shell.nix
     ./ssh.nix
+    ./wm
   ];
 
   home.stateVersion = "26.05";
