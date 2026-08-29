@@ -1,7 +1,6 @@
 { lib, pkgs, ... }:
 {
   imports = [
-    ./desktop.nix
     ./home-manager.nix
     ./i18n.nix
     ./nix.nix

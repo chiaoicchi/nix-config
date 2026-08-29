@@ -6,6 +6,7 @@
     ./networking.nix
 
     ../../modules/nixos
+    ../../modules/nixos/desktop.nix
   ];
 
   my = {
