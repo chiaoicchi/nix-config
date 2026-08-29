@@ -4,7 +4,10 @@
 
   users.users = {
     ${config.my.username} = {
-      extraGroups = [ "wheel" "networkmanager" ];
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+      ];
       isNormalUser = true;
       shell = pkgs.zsh;
     };

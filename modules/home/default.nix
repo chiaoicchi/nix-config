@@ -1,8 +1,8 @@
-{ pkgs, ... }:
 {
   imports = [
     ./apps.nix
     ./cli.nix
+    ./editor
     ./fcitx5
     ./git.nix
     ./shell.nix

@@ -11,23 +11,26 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    disko,
-    home-manager,
-    ... }: {
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      disko,
+      home-manager,
+      ...
+    }:
+    {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
 
-    nixosConfigurations = {
-      thinkpad = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/thinkpad
-          disko.nixosModules.disko
-          home-manager.nixosModules.home-manager
-        ];
+      nixosConfigurations = {
+        thinkpad = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/thinkpad
+            disko.nixosModules.disko
+            home-manager.nixosModules.home-manager
+          ];
+        };
       };
     };
-  };
 }
