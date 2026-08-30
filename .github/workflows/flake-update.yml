@@ -1,0 +1,46 @@
+name: Flake Update
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: DeterminateSystems/nix-installer-action@v22
+        with:
+          determinate: false
+      
+      - name: Update flake.lock
+        run: nix flake update
+
+      - name: Create Pull Request
+        run: |
+          if git diff --quiet flake.lock; then
+            echo "No changes to flake.lock"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b auto/flake-update
+          git add flake.lock
+          git commit -m "chore: update flake.lock"
+          git push --force-with-lease origin auto/flake-update
+          if ! gh pr list --head auto/flake-update --state open | grep -q .: then
+            gh pr create \
+              --title "chore: weekly flake.lock update" \
+              --body "Automated weekly update of flake.lock." \
+              --base main
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
