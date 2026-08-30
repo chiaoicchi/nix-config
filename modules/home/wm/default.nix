@@ -14,7 +14,6 @@
 
   home.packages = with pkgs; [
     brightnessctl
-    foot
     fuzzel
     wl-clipboard
   ];

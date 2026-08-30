@@ -1,6 +1,8 @@
 { lib, pkgs, ... }:
 {
   imports = [
+    ./docker.nix
+    ./fonts.nix
     ./home-manager.nix
     ./i18n.nix
     ./nix.nix

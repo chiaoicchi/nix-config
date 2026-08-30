@@ -34,6 +34,8 @@
 
       telescope-nvim
       plenary-nvim
+
+      nvim-web-devicons
     ];
 
     extraPackages = with pkgs; [
