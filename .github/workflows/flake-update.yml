@@ -35,6 +35,7 @@ jobs:
           git checkout -b auto/flake-update
           git add flake.lock
           git commit -m "chore: update flake.lock"
+          git fetch origin auto/flake-update || true
           git push --force-with-lease origin auto/flake-update
           if ! gh pr list --head auto/flake-update --state open | grep -q .; then
             gh pr create \
